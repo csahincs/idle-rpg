@@ -11,7 +11,7 @@ namespace DependencyInjection.Utility.SerializableType
         public Type Type
         {
             get => Type.GetType(TypeName);
-            set => TypeName = value.Name;
+            set => TypeName = value.AssemblyQualifiedName;
         }
 
         public SerializableType(Type type)

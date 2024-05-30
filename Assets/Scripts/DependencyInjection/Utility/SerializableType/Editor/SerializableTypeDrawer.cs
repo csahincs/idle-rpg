@@ -16,7 +16,8 @@ namespace DependencyInjection.Utility.SerializableType.Editor
             if (typeNameProperty != null)
             {
                 // Display the type name as a label
-                EditorGUI.LabelField(position, label.text, Type.GetType(typeNameProperty.stringValue)?.Name ?? "None");
+                EditorGUI.LabelField(position, label.text, 
+                    Type.GetType(typeNameProperty.stringValue)?.Name ?? "None");
             }
 
             EditorGUI.EndProperty();

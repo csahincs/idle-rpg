@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DependencyProviders:
-  - TypeName: InputService.InputService, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+  - TypeName: InputService2D.InputService2D, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!4 &1079011566
 Transform:

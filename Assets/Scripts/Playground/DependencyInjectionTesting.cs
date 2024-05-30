@@ -1,5 +1,4 @@
 using DependencyInjection.Attributes;
-using InputService2D;
 using UnityEngine;
 
 namespace Playground
