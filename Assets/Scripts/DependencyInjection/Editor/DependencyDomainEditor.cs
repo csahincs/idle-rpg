@@ -1,13 +1,15 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using DependencyInjection.Runtime.Domain;
+using DependencyInjection.Runtime.Utility;
 using DependencyInjection.Utility.SerializableType;
 using UnityEditor;
 using UnityEngine;
 
 namespace DependencyInjection.Editor
 {
-    [CustomEditor(typeof(DependencyDomain))]
+    [CustomEditor(typeof(SceneDependencyDomain))]
     public class DependencyDomainEditor : UnityEditor.Editor
     {
         private SerializedProperty _dependencyListProperty;
@@ -21,7 +23,7 @@ namespace DependencyInjection.Editor
         {
             DrawDefaultInspector();
 
-            DependencyDomain domain = (DependencyDomain)target;
+            SceneDependencyDomain domain = (SceneDependencyDomain)target;
             
             // Show the interface list elements
             EditorGUILayout.Space();
@@ -50,7 +52,7 @@ namespace DependencyInjection.Editor
             }
         }
 
-        private void ShowAddInterfaceWindow(DependencyDomain domain)
+        private void ShowAddInterfaceWindow(SceneDependencyDomain domain)
         {
             GenericMenu menu = new GenericMenu();
 
@@ -73,7 +75,7 @@ namespace DependencyInjection.Editor
             menu.ShowAsContext();
         }
 
-        private void AddInterfaceInstance(SerializableType type, DependencyDomain domain)
+        private void AddInterfaceInstance(SerializableType type, SceneDependencyDomain domain)
         {
             domain.DependencyProviders.Add(type);
         }

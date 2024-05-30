@@ -1,4 +1,4 @@
-namespace DependencyInjection
+namespace DependencyInjection.Runtime.Utility
 {
     public class DependencyDescriptor
     {
