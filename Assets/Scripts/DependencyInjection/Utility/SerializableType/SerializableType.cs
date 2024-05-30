@@ -8,10 +8,15 @@ namespace DependencyInjection.Utility.SerializableType
     {
         [SerializeField] private string TypeName;
 
+        private Type _type;
         public Type Type
         {
-            get => Type.GetType(TypeName);
-            set => TypeName = value.AssemblyQualifiedName;
+            get => _type;
+            set
+            {
+                _type = value;
+                TypeName = value.AssemblyQualifiedName;
+            }
         }
 
         public SerializableType(Type type)
