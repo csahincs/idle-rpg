@@ -12,4 +12,5 @@
             </ui:MultiColumnListView>
         </ui:VisualElement>
     </ui:Foldout>
+    <ui:VisualElement name="add_dependency" class="section" style="flex-grow: 1; flex-direction: row; justify-content: center;" />
 </ui:UXML>

@@ -46,14 +46,17 @@ namespace Common.DependencyInjection.Runtime.Domain
             var injectableFields = type.GetFields(BINDING_FLAGS)
                 .Where(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
 
-            foreach (var injectableField in injectableFields) {
-                if (injectableField.GetValue(instance) != null) {
+            foreach (var injectableField in injectableFields) 
+            {
+                if (injectableField.GetValue(instance) != null) 
+                {
                     Debug.LogWarning($"[Injector] Field '{injectableField.Name}' of class '{type.Name}' is already set.");
                     continue;
                 }
                 var fieldType = injectableField.FieldType;
                 var resolvedInstance = _dependencyContainer.Resolve(fieldType);
-                if (resolvedInstance == null) {
+                if (resolvedInstance == null) 
+                {
                     throw new Exception($"Failed to inject dependency into field '{injectableField.Name}' of class '{type.Name}'.");
                 }
                 
@@ -64,12 +67,14 @@ namespace Common.DependencyInjection.Runtime.Domain
             var injectableMethods = type.GetMethods(BINDING_FLAGS)
                 .Where(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
 
-            foreach (var injectableMethod in injectableMethods) {
+            foreach (var injectableMethod in injectableMethods) 
+            {
                 var requiredParameters = injectableMethod.GetParameters()
                     .Select(parameter => parameter.ParameterType)
                     .ToArray();
                 var resolvedInstances = requiredParameters.Select(_dependencyContainer.Resolve).ToArray();
-                if (resolvedInstances.Any(resolvedInstance => resolvedInstance == null)) {
+                if (resolvedInstances.Any(resolvedInstance => resolvedInstance == null)) 
+                {
                     throw new Exception($"Failed to inject dependencies into method '{injectableMethod.Name}' of class '{type.Name}'.");
                 }
                 
@@ -79,10 +84,12 @@ namespace Common.DependencyInjection.Runtime.Domain
             // Inject into properties
             var injectableProperties = type.GetProperties(BINDING_FLAGS)
                 .Where(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
-            foreach (var injectableProperty in injectableProperties) {
+            foreach (var injectableProperty in injectableProperties) 
+            {
                 var propertyType = injectableProperty.PropertyType;
                 var resolvedInstance = _dependencyContainer.Resolve(propertyType);
-                if (resolvedInstance == null) {
+                if (resolvedInstance == null) 
+                {
                     throw new Exception($"Failed to inject dependency into property '{injectableProperty.Name}' of class '{type.Name}'.");
                 }
 
@@ -94,11 +101,13 @@ namespace Common.DependencyInjection.Runtime.Domain
 
         #region Utility
         
-        private static MonoBehaviour[] FindMonoBehaviours() {
+        private static MonoBehaviour[] FindMonoBehaviours() 
+        {
             return FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.InstanceID);
         }
 
-        private static bool IsInjectable(MonoBehaviour obj) {
+        private static bool IsInjectable(MonoBehaviour obj) 
+        {
             var members = obj.GetType().GetMembers(BINDING_FLAGS);
             return members.Any(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
         }
